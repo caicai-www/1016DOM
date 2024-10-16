@@ -1,0 +1,13 @@
+8:17
+
+location
+search:""
+→網址?後面的東西
+
+
+★navigator 重要常用
+
+language (做多語言網站需要)
+userAgent (後端伺服器會判斷是從哪裡連過來的)
+
+platform(作業系統 EX:根據不同作業系統，顯示不同下載連結)

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div5">
+        <p>經銷商，重視採用必。</p>
+        <p>經銷商，重視採用必。</p>
+    </div>
+
+    <ul id="list1">
+        <li>A</li>
+        <li>B</li>
+        <li>C</li>
+    </ul>
+
+    <ul id="list2">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <Script>
+
+        const div5 = document.getElementById('div5')
+        const img5 = document.createElement('img')
+        img5.src = 'https://github.com/wdaweb.png'
+        img5.width = 10
+        // .replaceChild(新,舊)
+        // 新的取代元素內舊的
+        // 如果新的東西不在DOM會放上去,已經存在的東西會移動位置
+        // 舊的一定要在元素內
+        div5.replaceChild(img5, div5.firstElementChild)
+
+        // ----------------------------------------------
+
+        const list1 = document.getElementById('list1')
+        const list2 = document.getElementById('list2')
+        // .insertBefore(A,B)
+        // A放到B元素前面
+        // B一定要在元素內
+        // 如果新的東西不在DOM會放上去,
+        // B如果是NULL的話會被放在最前面
+        // list1.insertBefore(list2.firstElementChild, null)
+        list1.insertBefore(list2.firstElementChild, list1.lastElementChild)
+
+    </Script>
+</body>
+
+</html>

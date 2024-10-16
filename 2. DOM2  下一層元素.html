@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-blue {
+            color: blue;
+        }
+
+        .outline {
+            /* outline不會佔大小 */
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="links">
+        <a href="https://x.com">X</a>
+        <a href="https://www.google.com/">GOOGLE</a>
+    </div>
+
+    <ul id="list1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+
+    <ul id="list2">
+        <li>1</li>
+        <li>2</li>
+        <li id="list2li3">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <script>
+
+        // --------------------------------------------------------------
+
+        // .children下一層的所有元素
+        const links = document.getElementById('links').children
+        for (const element of links) {
+
+            // 第一種方法 很少用:
+            element.setAttribute('href', 'https://fb.com')
+            // 可以直接記第二種
+            // 適用於a . img ....(除了class外應該都可以直接用.去修改屬性)
+            element.href = 'https://fb.com'
+            console.log(element.href)
+            element.innerText = 'FB'
+        }
+
+        // -------------------------------------------------------------
+
+        const list1El = document.querySelector('#list1')
+        //.firstElementChild下一層的第一個
+        // .classlist .add() 新增class
+        list1El.firstElementChild.classList.add('text-blue')
+
+        //.lastElementChild下一層的最後一個
+        // (1)寫法
+        // list1El.lastElementChild.classList.add('text-blue', 'outline')
+
+        // (2)寫法:可以加很多 類似Math.min的概念
+        const classes = ['text-blue', 'outline']
+        list1El.lastElementChild.classList.add(...classes)
+
+        // .className 取得所有class 用空白分隔
+        console.log(list1El.lastElementChild.className) // text-blue outline
+        // .classList是陣列物件
+        console.log(list1El.lastElementChild.classList) // ['text-blue', 'outline', value: 'text-blue outline']
+        console.log(list1El.lastElementChild.classList[0]) // text-blue
+        console.log(list1El.lastElementChild.classList[1]) //  outline
+        console.log(list1El.lastElementChild.classList.length) // 2
+        console.log(list1El.lastElementChild.classList.value)// text-blue outline
+
+
+        const list2li3 = document.getElementById('list2li3')
+        //.previousElementSibling 同一層的前一個
+        list2li3.previousElementSibling.classList.add('outline')
+        // .classList.remove() 移除class
+        // list2li3.previousElementSibling.classList.remove('outline')
+
+        // 前兩個
+        list2li3.previousElementSibling.previousElementSibling.classList.add('text-blue')
+
+
+        // nextElementSibling 同一層的後一個
+        // 兩個以上寫迴圈
+        let el = list2li3
+        for (let i = 0; i < 2; i++) {
+            el = el.nextElementSibling
+        }
+        // .classList.toggle() 沒有就新增,有就移除
+        el.classList.toggle('text-blue')
+        // .classList.contains() 有沒有包含
+        console.log(el.classList.contains('text-blue')) //true
+
+        //.parentElement () 上一層
+        list2li3.parentElement.style.background = 'grey'
+
+    </script>
+</body>
+
+</html>

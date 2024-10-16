@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="time">剩餘 <span id="count">X</span>秒
+    </div>
+    <script>
+
+        const time = document.getElementById('time')
+        const count = document.getElementById('count')
+        count.innerText = prompt()
+        console.log(time.innerText)
+        console.log(count.innerText)
+
+        let timer = setInterval(() => {
+            time.style.color = 'blue'
+            // ↓★要注意是.innerText 
+            // 只有count--的話
+            count.innerText--
+            if (count.innerText == 0) {
+                clearInterval(timer)
+                time.innerText = '時間到'
+                time.style.color = 'red'
+            }
+        }, 1000
+        )
+
+    </script>
+</body>
+
+</html>

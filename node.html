@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--HTML所有的東西都是節點(註解也是) 元素是節點其中一點 -->
+    <div id="div">
+        123456
+        <p id="p"><!-- 註解-->ABCD</p>
+    </div>
+    <script>
+        const div = document.getElementById('div')
+        const p = document.getElementById('p')
+
+        console.log(div.firstChild)
+        console.log(div.firstElementChild)
+        /*data: \n :換行        */
+
+        console.log(p.firstChild)// <!-- 註解-->
+        console.log(p.firstChild.nodetype, p.firstChild.nodeType == Node.COMMENT_NODE)// undefined true
+        console.log(p.firstElementChild)// null
+    </script>
+</body>
+
+</html>

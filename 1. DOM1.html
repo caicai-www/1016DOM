@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text-blue {
+            color: blue;
+        }
+
+        .text-blue::before {
+            content: '藍色';
+            color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">ABCDEFG</h1>
+    <h2>
+        <i>111</i>
+    </h2>
+
+    <h2>
+        <i>222</i>
+    </h2>
+
+
+    <h3 class="text-color1">aaa</h3>
+    <h3 class="text-color1">bbb</h3>
+
+    <h3 class="text-center">ccc</h3>
+    <h3 class="text-center">ddd</h3>
+
+    <h3 class="text-blue">eee</h3>
+    <h3 class="text-blue">fff</h3>
+
+    <!-- ---------------------------------------------------- -->
+    <script>
+        // 用const抓html的東西
+        // el=elment
+
+        // 1. .getElementById() =>用id名稱抓取元素
+        const elTitle = document.getElementById('title')
+        // .innerText = 元素內的文字
+        console.log(`title的文字是${elTitle.innerText}`)
+        // ↑有抓到title的文字
+        // ↓被改掉了
+        elTitle.innerText = '123456'
+
+        // -----------------------------------------------------
+
+        // 2. .getElementsByTagName() =>用標籤名稱抓取元素
+        //                          ↓ elements=東西是陣列
+        const h2el = document.getElementsByTagName('h2')
+        // .innerHTML = 元素內的HTML的文字
+        console.log(h2el[0].innerHTML) //   <i>111</i>(連空白都會抓到)
+        console.log(h2el[0].innerText) //111
+
+        console.log(h2el[1].innerHTML.trim()) //<i>222</i>
+        console.log(h2el[1].innerText) //222
+
+        console.log(h2el) // HTMLCollection(2)
+        // 取下來的HTMLCollection不能用array.forEach
+        /* h2.forEach(element => {
+        console.log(element.innerHTML.trim())
+         })  */
+
+        //  ★可以用for 
+        for (const element of h2el) {
+            console.log(element.innerHTML.trim())
+        }// <i>111</i>
+        //<i>222</i>
+
+        // -----------------------------------------------------
+
+        // 3.getElementsByClassName
+        //                            ↓也是Elements不能用forEach
+        const colorEl = document.getElementsByClassName('text-color1')
+        for (const element of colorEl) {
+            // .stytle. 樣式名稱
+            // 取得或是修改行內樣式
+            element.style.color = 'red'
+            console.log(element.style.color)
+        }
+
+        // -----------------------------------------------------
+
+        // 4.querySelectorAll() 用選擇器取符合的"全部"東西
+        //                                           ↓class選擇器前面要加一個點
+        const centerEl = document.querySelectorAll('.text-center')
+        for (const element of centerEl) {
+            element.style['text-align'] = 'center'
+            console.log(element.style['text-align'])
+        }
+
+        // 取得資訊
+        const color2El = document.querySelectorAll('.text-blue')
+        for (const element of color2El) {
+            // console.log(element.style.color)
+            //會是空的
+            // getCompuerdStyle()
+            // 取得元素的最終樣式 ‧唯獨(不能修改)
+            // 可以取 ::before , ::after , ::first-letter
+            console.log(getComputedStyle(element).color)// rgb(0, 0, 255) 藍色
+            console.log(getComputedStyle(element, '::before').color)//rgb(135, 206, 235) 天藍
+            // 取不到:hover , :active ....
+        }
+
+        // querySelector() 用選擇器取符合的第一個東西
+    </script>
+</body>
+
+</html>
